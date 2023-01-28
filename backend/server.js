@@ -17,8 +17,11 @@ app.use((req, res, next) => {
 app.use("/api/workouts", workoutsRoutes);
 
 //  connect to db
+mongoose.set("strictQuery", false);
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(
+    "mongodb+srv://arpesh28:arpesh123@bookstore.sbgmnyb.mongodb.net/?retryWrites=true&w=majority"
+  )
   .then(() => {
     //  listen for requests
     app.listen(process.env.PORT, () => {
@@ -26,5 +29,5 @@ mongoose
     });
   })
   .catch((err) => {
-    console.log(error);
+    console.log("error==>>", err);
   });
